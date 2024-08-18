@@ -2,7 +2,7 @@
 #define USERDATA_H
 typedef struct{
     char name[256];
-    char ID[15];
+    char ID[256];
     char password[256];
 }DataUser;
 typedef enum{

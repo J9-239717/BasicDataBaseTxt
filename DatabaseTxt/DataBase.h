@@ -1,11 +1,13 @@
-#ifndef DATABASE_LOGIC
-#define DATABASE_LOGIC
+#ifndef DATABASE_H
+#define DATABASE_H
+
 #include"UserData.h"
-#include"DataBase.c"
+
+int _check(DataUser src);
 int _insert(DataUser data);
-int _find();
-int _delete();
+int _find(find_mode_flag f,const char key[]);
+int _delete(find_mode_flag f,const char key[]);
 void _show_all();
-void _show_by_id();
 void _listen(DataUser src);
+
 #endif

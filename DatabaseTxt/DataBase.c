@@ -23,28 +23,14 @@ void _show_all(){
     fclose(src);
 }
 
-int _find(find_mode_flag f){
-    char buffer[256];
+int _find(find_mode_flag f,const char key[]){
     char bufname[256], bufid[256], bufpas[256];
     int found = 0;
     FILE* fp = fopen("dataBase.txt", "r");
     
-    switch (f)
-    {
-    case BY_ID:
-        printf("Plase Enter id to find: ");scanf("%255s", buffer);
-        break;
-    case BY_USER:
-        printf("Plase Enter User to find: ");scanf("%255s", buffer);
-        break;
-    default:
-        printf("eror\n");
-        break;
-    }
-
      while (fscanf(fp, "%255s %255s %255s", bufname, bufid, bufpas) != EOF) {
-        if ((f == BY_ID && strcmp(bufid, buffer) == 0) ||
-            (f == BY_USER && strcmp(bufname, buffer) == 0)) {
+        if ((f == BY_ID && strcmp(bufid, key) == 0) ||
+            (f == BY_USER && strcmp(bufname, key) == 0)) {
             show(bufname, bufid, bufpas);
             found = 1;
         }
@@ -58,30 +44,16 @@ int _find(find_mode_flag f){
     return found;
 }
 
-int _delete(find_mode_flag f){
+int _delete(find_mode_flag f,const char key[]){
     char buffname[256],buffid[256],buffpass[256];
-    char buffer[256];
     int found = 0;
     FILE *fo,*fp;
     fo = fopen("dataBase.txt", "r");
     fp = fopen("temp.txt", "w");
 
-    switch (f)
-    {
-    case BY_ID:
-        printf("Plase Enter id to delete: ");scanf("%255s", buffer);
-        break;
-    case BY_USER:
-        printf("Plase Enter User to delete: ");scanf("%255s", buffer);
-        break;
-    default:
-        printf("eror\n");
-        break;
-    }
-
     while (fscanf(fo,"%255s %255s %255s", buffname,buffid,buffpass) != EOF){
-        if((f == BY_ID && strcmp(buffer,buffid) == 0) || 
-           (f == BY_USER && strcmp(buffer,buffname) == 0)){
+        if((f == BY_ID && strcmp(key,buffid) == 0) || 
+           (f == BY_USER && strcmp(key,buffname) == 0)){
             found = 1;
             continue;
         }else{
@@ -93,7 +65,6 @@ int _delete(find_mode_flag f){
     if(!found){
         remove("temp.txt");
         printf("Not found\n");
-        
         return 0;
     }else{
         remove("dataBase.txt");
@@ -102,6 +73,18 @@ int _delete(find_mode_flag f){
     }
     
     return 1;
+}
+
+int _check(DataUser src){
+    FILE* fp = fopen("dataBase.txt", "r");
+    char buffID[256],buffPas[256];
+    char buffName[256];
+    while (fscanf(fp,"%255s %255s %255s", buffName, buffID, buffPas) != EOF){
+        if(strcmp(src.ID,buffID) == 0 && strcmp(src.password,buffPas) == 0){
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void _listen(DataUser src){

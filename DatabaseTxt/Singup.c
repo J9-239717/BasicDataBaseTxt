@@ -8,7 +8,13 @@ int main(){
     char buffer[256];
     fgets(buffer,sizeof(buffer),stdin);
     buffer[strlen(buffer)-1] = '\0';
-    sscanf(buffer,"%s %s %s", data.name,data.ID,data.password);
-    printf("++%s %s %s++", data.name,data.ID,data.password);
+    while(sscanf(buffer,"%s %s %s", data.name,data.ID,data.password) != 3){
+        printf("Invalid input. Please enter name, ID, and password separated by spaces: ");
+        fgets(buffer, sizeof(buffer), stdin);
+        buffer[strcspn(buffer, "\n")] = '\0';
+    }
     _listen(data);
+    _show_all();
+    _find(BY_ID);
+    _delete(BY_ID);
 }

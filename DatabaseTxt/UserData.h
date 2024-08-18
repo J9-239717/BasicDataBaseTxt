@@ -5,4 +5,8 @@ typedef struct{
     char ID[15];
     char password[256];
 }DataUser;
+typedef enum{
+    BY_ID = (1 << 0),
+    BY_USER = (1 << 1)
+}find_mode_flag;
 #endif

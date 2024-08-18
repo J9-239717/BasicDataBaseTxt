@@ -4,10 +4,10 @@
 #include"UserData.h"
 
 int _check(DataUser src);
-int _insert(DataUser data);
+void _insert(DataUser data);
 int _find(find_mode_flag f,const char key[]);
 int _delete(find_mode_flag f,const char key[]);
-void _show_all();
+void _show_all(void);
 void _listen(DataUser src);
 
 #endif

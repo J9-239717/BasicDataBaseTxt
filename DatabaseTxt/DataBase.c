@@ -3,15 +3,15 @@
 #include<stdlib.h>
 #include"DataBase.h"
 
-#define show(a, b, c) printf("Name{%s},ID{%s},PASSWORD{%s}\n", (a) ? (a) : "NULL", (b) ? (b) : "NULL", (c) ? (c) : "NULL")
+#define show(a, b, c) printf("Name{%s},ID{%s},PASSWORD{%s}\n", (a) , (b) , (c))
 
-int _insert(DataUser data){
+void _insert(DataUser data){
     FILE* src = fopen("dataBase.txt", "a");
     fprintf(src, "%s %s %s\n", data.name, data.ID, data.password);
     fclose(src);
 }
 
-void _show_all(){
+void _show_all(void){
     FILE* src = fopen("dataBase.txt", "r");
     
     char bufname[256], bufid[256], bufpas[256];

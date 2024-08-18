@@ -8,7 +8,8 @@ int main() {
     while (1) {
         if (Login_completed) {
             // Homepage logic
-
+            for(int i = 0; i < 100; i++)
+                printf("BIG IS GAY\n");
             // Logout
             Login_completed = 0;
         } else {
@@ -18,7 +19,7 @@ int main() {
                    "Enter 3 to End Program\n");
             printf("Please Enter: ");
             scanf("%d", &op);
-
+            getchar();
             switch (op) {
                 case 1:
                     if (_Login()) {
